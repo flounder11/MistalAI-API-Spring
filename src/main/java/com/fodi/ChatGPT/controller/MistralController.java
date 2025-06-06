@@ -8,10 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.http.HTTP;
 
 @RestController
 @RequestMapping(("/api"))
+@CrossOrigin("*")
 public class MistralController {
     private final SupportRepository supportRepository;
     private final MistralService mistralService;
@@ -26,6 +26,6 @@ public class MistralController {
         System.out.println(q);
         String response = mistralService.generateText(q);
         supportRepository.save(new Support(q, response));
-        return ResponseEntity.status(HttpStatus.OK).body(response) ;
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
